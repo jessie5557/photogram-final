@@ -1,5 +1,6 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
@@ -9,6 +10,11 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
+
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+
+    <%= f.input :private, required: true, autofocus: true %>
 
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
@@ -27,6 +33,49 @@
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
+
+<!--
+<form class="edit_user" id="edit_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" name="authenticity_token" value="2LIlJeEBHlW0CLyJDzPx9xFHhWRKtCZnMBNYBCf6yGF5S9XhuUxQ3PuSyCEG4SHiV2ENNHhiR_AOXGf89Tdvnw" autocomplete="off" />
+  
+
+  <div class="field">
+    <label for="user_email">Email</label><br />
+    <input autofocus="autofocus" autocomplete="email" type="email" value="alice@example.com" name="user[email]" id="user_email" />
+  </div>
+
+
+  <div class="field">
+    <label for="user_username">Username</label><br />
+    <input type="text" value="alice" name="user[username]" id="user_username" />
+  </div>
+
+  <div class="field">
+    <label for="user_private">Private</label><br />
+    <input name="user[private]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" checked="checked" name="user[private]" id="user_private" />
+  </div>
+
+  <div class="field">
+    <label for="user_password">Password</label> <i>(leave blank if you don't want to change it)</i><br />
+    <input autocomplete="new-password" type="password" name="user[password]" id="user_password" />
+      <br />
+      <em>6 characters minimum</em>
+  </div>
+
+  <div class="field">
+    <label for="user_password_confirmation">Password confirmation</label><br />
+    <input autocomplete="new-password" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+  </div>
+
+  <div class="field">
+    <label for="user_current_password">Current password</label> <i>(we need your current password to confirm your changes)</i><br />
+    <input autocomplete="current-password" type="password" name="user[current_password]" id="user_current_password" />
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Update" data-disable-with="Update" />
+  </div>
+</form>
+-->
 
 <h3>Cancel my account</h3>
 
