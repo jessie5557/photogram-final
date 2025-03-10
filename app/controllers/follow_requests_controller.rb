@@ -1,26 +1,16 @@
 class FollowRequestsController < ApplicationController
-  def index
-    matching_follow_requests = FollowRequest.all
-
-    @list_of_follow_requests = matching_follow_requests.order({ :created_at => :desc })
-
-    render({ :template => "follow_requests/index" })
-  end
 
   def show
     the_id = params.fetch("path_id")
 
-    matching_follow_requests = FollowRequest.where({ :id => the_id })
+    matching_follow_requests = FollowRequest.where({ :recipient_id => the_id })
 
-    @the_follow_request = matching_follow_requests.at(0)
-
-    render({ :template => "follow_requests/show" })
   end
 
   def create
     the_follow_request = FollowRequest.new
     the_follow_request.sender_id = params.fetch("query_sender_id")
-    the_follow_request.recipeint_id = params.fetch("query_recipeint_id")
+    the_follow_request.recipient_id = params.fetch("query_recipient_id")
     the_follow_request.status = params.fetch("query_status")
 
     if the_follow_request.valid?
@@ -36,7 +26,7 @@ class FollowRequestsController < ApplicationController
     the_follow_request = FollowRequest.where({ :id => the_id }).at(0)
 
     the_follow_request.sender_id = params.fetch("query_sender_id")
-    the_follow_request.recipeint_id = params.fetch("query_recipeint_id")
+    the_follow_request.recipient_id = params.fetch("query_recipient_id")
     the_follow_request.status = params.fetch("query_status")
 
     if the_follow_request.valid?
