@@ -25,12 +25,17 @@
 
       <div>
         <label for="caption_box">
-          caption
+          Caption
         </label>
 
         <input type="text" id="caption_box" name="query_caption">
       </div>
 
+      <input type="hidden" name="query_owner_id" value="<%= current_user.id %>">
+      <input type="hidden" name="query_comments_count" value="0">
+      <input type="hidden" name="query_likes_count" value="0">
+
+<!--
       <div>
         <label for="owner_id_box">
           Owner
@@ -54,7 +59,7 @@
 
         <input type="text" id="likes_count_box" name="query_likes_count">
       </div>
-
+-->
       <button>
         Create photo
       </button>
