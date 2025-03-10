@@ -1,4 +1,9 @@
 class FollowRequestsController < ApplicationController
+  def index
+    @list_of_follow_requests = FollowRequest.all
+
+  end
+
 
   def show
     the_id = params.fetch("path_id")
@@ -15,9 +20,9 @@ class FollowRequestsController < ApplicationController
 
     if the_follow_request.valid?
       the_follow_request.save
-      redirect_to("/follow_requests", { :notice => "Follow request created successfully." })
+      redirect_to("/", { :notice => "Follow request created successfully." })
     else
-      redirect_to("/follow_requests", { :alert => the_follow_request.errors.full_messages.to_sentence })
+      redirect_to("/", { :alert => the_follow_request.errors.full_messages.to_sentence })
     end
   end
 
