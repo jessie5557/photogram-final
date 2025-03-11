@@ -9,10 +9,34 @@
     <dd>
       <%= FollowRequest.where({ :recipient_id => @matching_user.id, :status => "accepted" }).count %>
     <dd>
+
   <dt>Pending follow requests</dt>
-    <dd>
-      @list_of_requests = 
-    </dd>
+    <ul>
+      <% @list_of_pending_requests = FollowRequest.where({ :recipient_id => @matching_user.id, :status => "pending" }) %>
+      <% @list_of_pending_requests.each do |a_pending_request| %>
+
+        <li>
+          <%= a_pending_request.sender.username %>
+
+          <form action="/modify_follow_request/<%= a_pending_request.sender.id %>" method="post">
+            <input type="hidden" name="query_status" value="accepted">
+            <button>
+              Accepted
+            </button>
+          </form>
+
+          <form action="/modify_follow_request/<%= a_pending_request.sender.id %>" method="post">
+            <input type="hidden" name="query_status" value="rejected">
+            <button>
+              Reject
+            </button>
+          </form>
+        
+          <% end %>
+      </li>
+
+    </ul>
+
   <dt>Following</dt>
     <dd>
       <%= FollowRequest.where({ :sender_id => @matching_user.id, :status => "accepted" }).count %>
