@@ -108,14 +108,14 @@
         </th>
       </tr>
 
-      <% @list_of_photos.each do |a_photo| %>
+      <% @list_of_public_photos.each do |a_photo| %>
       <tr>
         <td>
           <%= a_photo.id %>
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src="<%= a_photo.image %>" alt="">
         </td>
 
         <td>
