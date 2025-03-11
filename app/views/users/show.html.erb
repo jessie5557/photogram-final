@@ -1,0 +1,22 @@
+<h1><%= @the_username %></h1>
+<dl>
+  <dt>Private</dt>
+    <dd>
+      <%= @matching_user.private %>
+    </dd>
+
+  <dt>Followers</dt>
+    <dd>
+      <%= FollowRequest.where({ :recipient_id => @matching_user.id, :status => "accepted" }).count %>
+    <dd>
+  <dt>Pending follow requests</dt>
+    <dd>
+      @list_of_requests = 
+    </dd>
+  <dt>Following</dt>
+    <dd>
+      <%= FollowRequest.where({ :sender_id => @matching_user.id, :status => "accepted" }).count %>
+    </dd>
+</dl>
+
+<h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
