@@ -43,4 +43,33 @@
     </dd>
 </dl>
 
+<ul>
+  <li>
+    <a href="/users/<%= @matching_user.username %>/liked_photos">Liked photos</a>
+  </li>
+
+</ul>
+
 <h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Owner</th>
+    <th>Caption</th>
+    <th>Posted</th>
+    <th>Likes</th>
+    <th></th>
+  </tr>
+  
+  <% @list_of_liked_photos.each do |a_liked_photo| %>
+  <tr>
+    <td>
+      
+    </td>
+
+  </tr>
+
+
+
+</table>
