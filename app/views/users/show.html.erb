@@ -50,7 +50,10 @@
 
 </ul>
 
-Feed
+  <li>
+    <a href="/users/<%= @matching_user.username %>/feed">Feed</a>
+  </li>
+
 Discover
 
 <h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>

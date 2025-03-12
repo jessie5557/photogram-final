@@ -19,4 +19,9 @@ class UsersController < ApplicationController
     @list_of_likes = Like.where ({ :fan_id => @matching_user.id })
   end
 
+  def feed
+    @the_username = params.fetch("username")
+    @matching_user = User.where({ :username => @the_username }).at(0)
+  end
+
 end
