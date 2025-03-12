@@ -48,14 +48,15 @@
     <a href="/users/<%= @matching_user.username %>/liked_photos">Liked photos</a>
   </li>
 
+</ul>
+
   <li>
     <a href="/users/<%= @matching_user.username %>/feed">Feed</a>
   </li>
-</ul>
 
 Discover
 
-<h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
+<h1>Feed (<%= Photo.where({ :owner_id => @matching_users_following.id}).count %>)</h1>
 
 <table border="1">
   <tr>
@@ -67,26 +68,26 @@ Discover
     <th></th>
   </tr>
   
-  <% @list_of_own_photos.each do |an_own_photo| %>
+  <% @photos_of_followed_creators.each do |a_photo| %>
   <tr>
     <td>
-      <img src="<%= an_own_photo.image %>">
+      <img src="<%= a_photo.image %>">
     </td>
 
     <td>
-      <%= an_own_photo.created_by %>
+      <%= a_photo.created_by %>
     </td>
 
     <td>
-      <%= an_own_photo.caption %>
+      <%= a_photo.caption %>
     </td>
 
     <td>
-      <%= an_own_photo.created_at %>
+      <%= a_photo.created_at %>
     </td>
 
     <td>
-      <%= Like.where({ :photo_id => an_own_photo.id }).count %>
+      <%= Like.where({ :photo_id => a_photo.id }).count %>
     </td>
 
     <td>

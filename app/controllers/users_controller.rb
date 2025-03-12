@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   def feed
     @the_username = params.fetch("username")
     @matching_user = User.where({ :username => @the_username }).at(0)
+    
+    @list_of_follows = FollowRequest.where({ :sender_id => @matching_user.id, :status => "approved" })
+    @list_of_followed_creators = User.where({ :id => @list_of_follows.recipient_id })
+    @photos_of_followed_creators = @list_of_followed_creators.photos
   end
 
 end
