@@ -53,7 +53,7 @@
 Feed
 Discover
 
-<h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
+<h1>Liked photos (<%= @list_of_likes.count %>)</h1>
 
 <table border="1">
   <tr>
@@ -65,18 +65,31 @@ Discover
     <th></th>
   </tr>
   
-  <% @list_of_liked_photos.each do |a_liked_photo| %>
+  <% @list_of_likes.each do |a_like| %>
   <tr>
     <td>
-      <img src="<%= a_photo.image %>">
+      <img src="<%= a_like.photo_liked.image %>">
     </td>
 
     <td>
-      <%= a_liked_photo.caption %>
+      <%= a_like.photo_liked.created_by.username %>
     </td>
 
     <td>
-      <%= a_liked_photo.caption %>
+      <%= a_like.photo_liked.caption %>
     </td>
+
+    <td>
+      <%= a_like.photo_liked.created_at %>
+    </td>
+
+    <td>
+      <%= a_like.photo_liked.likes.count %>
+    </td>
+
+    <td>
+      Show details
+    </td>
+  <% end %>
 
   </tr>
