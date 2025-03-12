@@ -1,0 +1,82 @@
+<h1><%= @the_username %></h1>
+<dl>
+  <dt>Private</dt>
+    <dd>
+      <%= @matching_user.private %>
+    </dd>
+
+  <dt>Followers</dt>
+    <dd>
+      <%= FollowRequest.where({ :recipient_id => @matching_user.id, :status => "accepted" }).count %>
+    <dd>
+
+  <dt>Pending follow requests</dt>
+    <ul>
+      <% @list_of_pending_requests = FollowRequest.where({ :recipient_id => @matching_user.id, :status => "pending" }) %>
+      <% @list_of_pending_requests.each do |a_pending_request| %>
+
+        <li>
+          <%= a_pending_request.sender.username %>
+
+          <form action="/modify_follow_request/<%= a_pending_request.sender.id %>" method="post">
+            <input type="hidden" name="query_status" value="accepted">
+            <button>
+              Accepted
+            </button>
+          </form>
+
+          <form action="/modify_follow_request/<%= a_pending_request.sender.id %>" method="post">
+            <input type="hidden" name="query_status" value="rejected">
+            <button>
+              Reject
+            </button>
+          </form>
+        
+          <% end %>
+      </li>
+
+    </ul>
+
+  <dt>Following</dt>
+    <dd>
+      <%= FollowRequest.where({ :sender_id => @matching_user.id, :status => "accepted" }).count %>
+    </dd>
+</dl>
+
+<ul>
+  <li>
+    <a href="/users/<%= @matching_user.username %>/liked_photos">Liked photos</a>
+  </li>
+
+</ul>
+
+Feed
+Discover
+
+<h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Owner</th>
+    <th>Caption</th>
+    <th>Posted</th>
+    <th>Likes</th>
+    <th></th>
+  </tr>
+  
+  <% @list_of_liked_photos.each do |a_liked_photo| %>
+  <tr>
+    <td>
+      <img src="<%= a_photo.image %>">
+    </td>
+
+    <td>
+      <%= a_liked_photo.caption %>
+    </td>
+
+    <td>
+      <%= a_liked_photo.caption %>
+    </td>
+
+  </tr>

@@ -50,6 +50,9 @@
 
 </ul>
 
+Feed
+Discover
+
 <h1>Own photos (<%= Photo.where({ :owner_id => @matching_user.id}).count %>)</h1>
 
 <table border="1">
@@ -62,13 +65,33 @@
     <th></th>
   </tr>
   
-  <% @list_of_liked_photos.each do |a_liked_photo| %>
+  <% @list_of_own_photos.each do |an_own_photo| %>
   <tr>
     <td>
-      
+      <img src="<%= an_own_photo.image %>">
     </td>
 
+    <td>
+      <%= an_own_photo.caption %>
+    </td>
+
+    <td>
+      <%= an_own_photo.caption %>
+    </td>
+
+    <td>
+      <%= an_own_photo.created_at %>
+    </td>
+
+    <td>
+      <%= Like.where({ :photo_id => an_own_photo.id }).count %>
+    </td>
+
+    <td>
+      Show details
+    </td>
   </tr>
+  <% end %>
 
 
 
