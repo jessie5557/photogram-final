@@ -65,10 +65,29 @@
       </dd>
 
       <dt>
-        Updated at
+        Edit photo
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_photo.updated_at) %> ago
+        <form action="/modify_photo/<%= @the_photo.id %>"  method="post" >
+          <div>
+            <label for="image_box">
+              Image
+            </label>
+            <input type="text" id="image_box" name="query_image" value="<%= @the_photo.image %>">
+          </div>
+
+          <div>
+            <label for="caption_box">
+              caption
+            </label>
+            <input type="text" id="caption_box" name="query_caption" value="<%= @the_photo.caption %>">
+          </div>
+          <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @the_photo.owner_id %>">
+          <input type="hidden" id="comments_count_box" name="query_comments_count" value="<%= @the_photo.comments_count %>">
+          <input type="hidden" id="likes_count_box" name="query_likes_count" value="<%= @the_photo.likes_count %>">
+          <button>
+            Update photo
+          </button>
       </dd>
     </dl>
   </div>
