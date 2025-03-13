@@ -2,8 +2,13 @@ class PhotosController < ApplicationController
   skip_before_action(:authenticate_user!, { :only => [:index] })
   
   def index
-    public_photos = Photo.where({ :owner_id => User.where({ :private => false }) })
-    @list_of_public_photos = public_photos.order({ :created_at => :desc })
+    public_users = User.where({ :private => false })
+    public_user_ids = []  # Initialize an empty array
+    public_users.each do |user|  # Manually extract user IDs
+      public_user_ids.push(user.id)
+    end
+    public_photos = Photo.where({ :owner_id => public_user_ids})  # Query photos using filtered IDs
+    @list_of_public_photos = public_photos.order(created_at: :desc)  # Order by creation time
 
     render({ :template => "photos/index" })
   end
