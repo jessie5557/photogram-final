@@ -10,6 +10,7 @@
       <%= FollowRequest.where({ :recipient_id => @matching_user.id, :status => "accepted" }).count %>
     <dd>
 
+<% if @matching_user == current_user %>
   <dt>Pending follow requests</dt>
     <ul>
       <% @list_of_pending_requests = FollowRequest.where({ :recipient_id => @matching_user.id, :status => "pending" }) %>
@@ -33,9 +34,11 @@
           </form>
         
           <% end %>
-      </li>
+        </li>
 
     </ul>
+<% else %>
+<% end %>
 
   <dt>Following</dt>
     <dd>
