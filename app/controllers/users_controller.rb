@@ -24,8 +24,13 @@ class UsersController < ApplicationController
     @matching_user = User.where({ :username => @the_username }).at(0)
     
     @list_of_follows = FollowRequest.where({ :sender_id => @matching_user.id, :status => "approved" })
-    @list_of_followed_creators = User.where({ :id => @list_of_follows.recipient_id })
-    @photos_of_followed_creators = @list_of_followed_creators.photos
-  end
+    # Extract recipient IDs using .push
+    recipient_ids = []
+    @list_of_follows.each do |follow|
+      recipient_ids.push(follow.recipient_id)  # Store recipient IDs
+    end
 
+    # Fetch photos from all followed creators
+    @list_of_photos_of_followed_creators = Photo.where({ :created_by => recipient_ids })
+  end
 end

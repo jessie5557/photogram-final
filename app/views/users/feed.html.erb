@@ -56,7 +56,7 @@
 
 Discover
 
-<h1>Feed (<%= Photo.where({ :owner_id => @matching_users_following.id}).count %>)</h1>
+<h1>Feed (<%= @list_of_photos_of_followed_creators.count %>)</h1>
 
 <table border="1">
   <tr>
@@ -68,7 +68,7 @@ Discover
     <th></th>
   </tr>
   
-  <% @photos_of_followed_creators.each do |a_photo| %>
+  <% @list_of_photos_of_followed_creators.each do |a_photo| %>
   <tr>
     <td>
       <img src="<%= a_photo.image %>">
