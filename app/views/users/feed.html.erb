@@ -83,7 +83,7 @@ Discover
     </td>
 
     <td>
-      <%= a_photo.created_at %>
+      <%= distance_of_time_in_words(Time.now, a_photo.created_at) %> ago
     </td>
 
     <td>

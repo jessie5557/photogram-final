@@ -80,7 +80,7 @@ Discover
     </td>
 
     <td>
-      <%= a_like.photo_liked.created_at %>
+      <%= distance_of_time_in_words(Time.now, an_liked_photo.created_at) %> ago
     </td>
 
     <td>
