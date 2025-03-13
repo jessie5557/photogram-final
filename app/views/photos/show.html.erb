@@ -90,6 +90,14 @@
   <% end %>
 </table>
 
+<h3>Add a new comment</h3>
+<form action="/insert_comment" method="post">
+  <input type="text" name="query_body">
+  <input type="hidden" name="query_photo_id" value=<%= @the_photo.id %>>
+  <input type="hidden" name="query_author_id" value=<%= current_user.id %>>
+  <button>Add comment</button>
+</form>
+
 <!--
 <h2>
   Edit photo
