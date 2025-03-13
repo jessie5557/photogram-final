@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  skip_before_action(:authenticate_user!, { :only => [:index] })
+  
   def index
     public_photos = Photo.where({ :owner_id => User.where({ :private => false }) })
     @list_of_public_photos = public_photos.order({ :created_at => :desc })
