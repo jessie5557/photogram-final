@@ -8,64 +8,65 @@
 
 <hr>
 
+<% if current_user.present? %>
 <div>
-  <div>
-    <h2>
-      Add a new photo
-    </h2>
+  <h2>
+    Add a new photo
+  </h2>
 
-    <form action="/insert_photo" method="post">
-      <div>
-        <label for="image_box">
-          Image
-        </label>
+  <form action="/insert_photo" method="post">
+    <div>
+      <label for="image_box">
+        Image
+      </label>
 
-        <input type="file" id="image_box" name="query_image">
-      </div>
+      <input type="file" id="image_box" name="query_image">
+    </div>
 
-      <div>
-        <label for="caption_box">
-          Caption
-        </label>
+    <div>
+      <label for="caption_box">
+        Caption
+      </label>
 
-        <input type="text" id="caption_box" name="query_caption">
-      </div>
+      <input type="text" id="caption_box" name="query_caption">
+    </div>
 
-      <input type="hidden" name="query_owner_id" value="<%= current_user.id %>">
-      <input type="hidden" name="query_comments_count" value="0">
-      <input type="hidden" name="query_likes_count" value="0">
+    <input type="hidden" name="query_owner_id" value="<%= current_user.id %>">
+    <input type="hidden" name="query_comments_count" value="0">
+    <input type="hidden" name="query_likes_count" value="0">
 
 <!--
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
+    <div>
+      <label for="owner_id_box">
+        Owner
+      </label>
 
-        <input type="text" id="owner_id_box" name="query_owner_id">
-      </div>
+      <input type="text" id="owner_id_box" name="query_owner_id">
+    </div>
 
-      <div>
-        <label for="comments_count_box">
-          Comments count
-        </label>
+    <div>
+      <label for="comments_count_box">
+        Comments count
+      </label>
 
-        <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>
+      <input type="text" id="comments_count_box" name="query_comments_count">
+    </div>
 
-      <div>
-        <label for="likes_count_box">
-          Likes count
-        </label>
+    <div>
+      <label for="likes_count_box">
+        Likes count
+      </label>
 
-        <input type="text" id="likes_count_box" name="query_likes_count">
-      </div>
+      <input type="text" id="likes_count_box" name="query_likes_count">
+    </div>
 -->
-      <button>
-        Add photo
-      </button>
-    </form>
-  </div>
+    <button>
+      Add photo
+    </button>
+  </form>
 </div>
+<% else %>
+<% end %>
 
 <hr>
 <div>
@@ -123,7 +124,7 @@
         </td>
 
         <td>
-          <%= a_photo.owner_id %>
+          <%= a_photo.created_by.username %>
         </td>
 
         <td>
