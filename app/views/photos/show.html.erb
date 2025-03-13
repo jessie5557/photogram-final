@@ -77,6 +77,8 @@
       </form>
     <% else %>
       <form action="/delete_like/<%= existing_like.first.id %>" method="post">
+        <input type="hidden" name="query_photo_id" value="<%= @the_photo.id %>">
+        <input type="hidden" name="query_fan_id" value="<%= current_user.id %>">
       <button>
           Unlike
         </button>
