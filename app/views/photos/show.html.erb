@@ -11,19 +11,22 @@
         </a>
       </div>
 
+    <% if @the_photo.created_by == current_user %>
       <div>
         <a href="/delete_photo/<%= @the_photo.id %>">
-          Delete photo
+          Delete this photo
         </a>
       </div>
     </div>
+    <% else %>
+    <% end %>
 
     <dl>
       <dt>
         Image
       </dt>
       <dd>
-        <%= @the_photo.image %>
+        <img src="<%= @the_photo.image %>">
       </dd>
 
       <dt>
