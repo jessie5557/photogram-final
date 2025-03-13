@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
     matching_photos = Photo.where({ :id => the_id })
 
     @the_photo = matching_photos.at(0)
+    @list_of_comments = Comment.where({ :photo_id => @the_photo.id})
 
     render({ :template => "photos/show" })
   end
